@@ -31,7 +31,6 @@ int main(void)
     mt9v03x_init_dvp ();
     servo_init();
 
-
     // 此处编写用户代码(例如：外设初始化代码等)
     interrupt_global_enable();              // 总中断最后开启
     while(1)
@@ -45,6 +44,8 @@ int main(void)
 
           }
         PID();
+
+//        display_oled();
 
 
     }

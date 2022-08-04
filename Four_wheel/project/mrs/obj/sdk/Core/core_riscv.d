@@ -1,2 +1,2 @@
 sdk/Core/core_riscv.o: \
- D:/MounriverProject/ss/camera1/libraries/sdk/Core/core_riscv.c
+ D:/MounriverProject/Smart-Car/Four_wheel/libraries/sdk/Core/core_riscv.c

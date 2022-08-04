@@ -36,9 +36,9 @@ void servo_init()
     pwm_init(TIM2_PWM_CH4_A3, 12000, 0);
     pwm_init( servo, 50, 0);
 
-    pwm_set_duty(TIM3_PWM_CH3_B0, 2800);  //左轮前
+    pwm_set_duty(TIM3_PWM_CH3_B0, 3300);  //左轮前
     pwm_set_duty(TIM3_PWM_CH4_B1, 0);    //左轮后
-    pwm_set_duty(TIM2_PWM_CH3_A2, 2800);     //右轮前
+    pwm_set_duty(TIM2_PWM_CH3_A2, 3300);     //右轮前
     pwm_set_duty(TIM2_PWM_CH4_A3, 0);  //右轮后
     pwm_set_duty(servo, servo_pwm);  //舵机右
 
@@ -48,22 +48,22 @@ void servo_init()
 
 void PID()
 {
-    float kp=1.8;//1.2/1.55
+    float kp=2.6;//1.2/1.55         //2.6
     int k=0;
-    float kd=0.1;
+    float kd=0.12;
     int pwm;
-    for (int i = 4; i < 12; ++i)
+    for (int i = 4; i < 16; ++i)
     {
         k+=LCenter[i];
     }
-    k/=8;
+    k/=12;
     erro_last=erro_next;
     erro_next=k-92;
-    if(erro_next<-40||erro_next>40)
+    if(erro_next<-30||erro_next>30)//原40
     {
         pwm=limit(kp*(k-92)-kd*(erro_next-erro_last),70);
     }
-    else{  pwm=limit(kp*(k-92)/2.8-kd*(erro_next-erro_last)/2.9,70);}
+    else{  pwm=limit(kp*(k-92)/4-kd*(erro_next-erro_last)/4,70);}
     k=0;
     pwm_set_duty(servo, middle+pwm);
 }
