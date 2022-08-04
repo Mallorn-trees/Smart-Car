@@ -99,7 +99,7 @@ void zhongxian()
             }
         }
         //下一行的扫线在上一行的基础上向左右扫
-        zhongold = (int)((L_black[hang] + R_black[hang]) / 2);
+        zhongold = (int)((L_black[hang] / 2+ R_black[hang]/2) );
     }
     for (hang = 0; hang < 50; hang++)
     { LCenter[hang] = (unsigned char)((L_black[hang] + R_black[hang]) / 2); }

@@ -55,7 +55,7 @@ all: Four_wheel.elf secondary-outputs
 
 # 工具调用
 Four_wheel.elf: $(OBJS) $(USER_OBJS)
-	@	@	riscv-none-embed-gcc -march=rv32imafc -mabi=ilp32f -msmall-data-limit=8 -mno-save-restore -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-common -pedantic -Wunused -Wuninitialized -Wall  -g -T "D:\MounriverProject\Smart-Car\Four_wheel\libraries\sdk\Ld\Link.ld" -nostartfiles -Xlinker --gc-sections -L"../" -Wl,-Map,"Four_wheel.map" --specs=nano.specs -u _printf_float --specs=nosys.specs -o "Four_wheel.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	@	@	riscv-none-embed-gcc -march=rv32imafc -mabi=ilp32f -msmall-data-limit=8 -mno-save-restore -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-common -pedantic -Wunused -Wuninitialized -Wall  -g -T "C:\Users\86157\Desktop\Smart-Car-Four_wheel\Four_wheel\libraries\sdk\Ld\Link.ld" -nostartfiles -Xlinker --gc-sections -L"../" -Wl,-Map,"Four_wheel.map" --specs=nano.specs -u _printf_float --specs=nosys.specs -o "Four_wheel.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@	@
 Four_wheel.hex: Four_wheel.elf
 	@	riscv-none-embed-objcopy -O ihex "Four_wheel.elf"  "Four_wheel.hex"

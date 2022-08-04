@@ -45,25 +45,27 @@ void servo_init()
 
 
 }
-
+float using_kp,using_kd;
 void PID()
 {
-    float kp=2.6;//1.2/1.55         //2.6
+    float kp=2.63;//1.2/1.55
     int k=0;
-    float kd=0.12;
+    float kd=0.1;
     int pwm;
-    for (int i = 4; i < 16; ++i)
+    for (int i = 4; i < 12; ++i)
     {
         k+=LCenter[i];
     }
-    k/=12;
+    k/=8;
     erro_last=erro_next;
     erro_next=k-92;
-    if(erro_next<-30||erro_next>30)//ԭ40
+
+    if(erro_next<-40||erro_next>40)
     {
-        pwm=limit(kp*(k-92)-kd*(erro_next-erro_last),70);
+        using_kp = kp;
     }
-    else{  pwm=limit(kp*(k-92)/4-kd*(erro_next-erro_last)/4,70);}
+    else{  using_kp = kp /2.9;}
+    pwm=limit(kp*(k-92)/2.8-kd*(erro_next-erro_last)/2.9,70);
     k=0;
     pwm_set_duty(servo, middle+pwm);
 }

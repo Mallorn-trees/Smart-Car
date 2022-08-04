@@ -19,6 +19,8 @@
 #include "zf_common_headfile.h"
 #include "servo.h"
 #include "picture_process.h"
+#include "my_imagetransfer.h"
+
 
 int servo_pwm=790;
 
@@ -28,25 +30,26 @@ int main(void)
     clock_init(SYSTEM_CLOCK_144M);          // 务必保留，设置系统时钟。
     debug_init();                           // 务必保留，本函数用于初始化MPU 时钟 调试串口
     oled_init();
-    mt9v03x_init_dvp ();
+//    mt9v03x_init_dvp ();
     servo_init();
-
+    My_SdCard_Init();
+//    sd_init();
     // 此处编写用户代码(例如：外设初始化代码等)
     interrupt_global_enable();              // 总中断最后开启
     while(1)
     {
-        if(mt9v03x_finish_flag_dvp)
-          {
-              mt9v03x_finish_flag_dvp = 0;
-              compress_image();//图像二值化在zf_device_camera.c中
-              zhongxian();
-              display_oled();
+//        if(mt9v03x_finish_flag_dvp)
+//          {
+//              mt9v03x_finish_flag_dvp = 0;
+//              compress_image();//图像二值化在zf_device_camera.c中
+//              zhongxian();
+//              display_oled();
+//              PID();
+//              My_SdCard_Save();
+//          }
 
-          }
-        PID();
-
-//        display_oled();
-
+        My_SdCard_Read();
+        display_oled();
 
     }
 }

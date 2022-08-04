@@ -444,30 +444,30 @@ uint8 mt9v03x_init_dvp (void)
     interrupt_global_enable();
 
     //等待摄像头上电初始化成功 方式有两种：延时或者通过获取配置的方式 二选一
-    //system_delay_ms(1000);                                                    // 延时方式
+    system_delay_ms(1000);                                                    // 延时方式
     uart_receive_flag_dvp = 0;
-    if(mt9v03x_get_config_dvp(mt9v03x_get_confing_buffer_dvp))                  // 获取配置的方式
-    {
-        //oled_show_string(0, 0, "1");
-        zf_assert(0);
-        return 1;
-        //oled_show_string(0, 1 , "2");
-    }
-
-    uart_receive_flag_dvp = 0;
-    if(mt9v03x_set_config_dvp(mt9v03x_set_confing_buffer_dvp))
-    {
-        zf_assert(0);
-        return 1;
-    }
-
-    uart_receive_flag_dvp = 0;
-    //获取配置便于查看配置是否正确
-    if(mt9v03x_get_config_dvp(mt9v03x_get_confing_buffer_dvp))
-    {
-        zf_assert(0);
-        return 1;
-    }
+//    if(mt9v03x_get_config_dvp(mt9v03x_get_confing_buffer_dvp))                  // 获取配置的方式
+//    {
+//        //oled_show_string(0, 0, "1");
+//        zf_assert(0);
+//        return 1;
+//        //oled_show_string(0, 1 , "2");
+//    }
+//
+//    uart_receive_flag_dvp = 0;
+//    if(mt9v03x_set_config_dvp(mt9v03x_set_confing_buffer_dvp))
+//    {
+//        zf_assert(0);
+//        return 1;
+//    }
+//
+//    uart_receive_flag_dvp = 0;
+//    //获取配置便于查看配置是否正确
+//    if(mt9v03x_get_config_dvp(mt9v03x_get_confing_buffer_dvp))
+//    {
+//        zf_assert(0);
+//        return 1;
+//    }
 
     interrupt_global_disable();
 
